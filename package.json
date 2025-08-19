@@ -1,0 +1,27 @@
+{
+  "name": "cdn",
+  "version": "0.0.1",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "prod": "NODE_ENV=production bun src/index.ts",
+    "dev": "NODE_ENV=development bun --watch src/index.ts",
+    "lint": "bunx biome check --write src/"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.1.3",
+    "@tsconfig/bun": "^1.0.8",
+    "@types/bun": "latest",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "hono": "^4.9.2",
+    "ipc-client": "github:pygmyapp/ipc-client",
+    "mime": "^4.0.7",
+    "minio": "^8.0.5",
+    "sharp": "^0.34.3",
+    "snowyflake": "^2.0.1",
+    "zod": "^4.0.17"
+  }
+}

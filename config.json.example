@@ -1,0 +1,23 @@
+{
+    "uploadSizeLimit": 10000000,
+    "uploadFileTypes": {
+        "avatars": ["png", "jpg", "jpeg", "webp"],
+        "attachments": [
+            "png", "jpg", "jpeg", "webp", "gif", "apng", "avif", "heic", "ico",
+
+            "mp4", "webm", "mov", "avi", "mkv", "hevc", "m4v",
+
+            "mp3", "wav", "ogg", "flag", "aac", "m4a", "mid", "midi", "opus",
+
+            "pdf", "txt", "md", "rtf", "odt", "ods", "odp", "latex", "tex", "bib",
+            "doc", "docx", "ppt", "pptx", "xls", "xlsx", "csv", "tsv", "epub",
+
+            "js", "ts", "mjs", "json", "yaml", "yml", "xml", "html", "css",
+            "c", "cpp", "h", "java", "py", "rb", "go", "rs", "php", "swift",
+            "kt", "sh", "vue", "sql", "ini", "conf", "env", "toml", "lua",
+            "dart", "asm", "s", "scala", "ex", "exs", "erl", "pl", "pm",
+
+            "zip", "tar", "gz", "7z", "rar"
+        ]
+    }
+}
