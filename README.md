@@ -1,4 +1,4 @@
-# 🐰💬 pygmyapp/cdn
+# 🐰📁 pygmyapp/cdn
 S3-compatible content server for uploading and serving images/attachments
 
 ## Dependencies
