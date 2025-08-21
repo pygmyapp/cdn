@@ -5,7 +5,7 @@ S3-compatible content server for uploading and serving images/attachments
 **Pygmy is built with Bun!** It doesn't run on node.js alone, [see here to install Bun](https://bun.com/docs/installation) or [here to learn more](https://bun.sh).
 
 `pygmyapp/cdn` depends on a [MinIO](https://www.min.io/) server with:
-- the following buckets: `attachments`, `avatars`, `cache`;
+- the following buckets: `cache`, `attachments`, `avatars`;
 - access key (username) and secret key (password) configured.
 
 It is *highly recommended* to change the default credentials to something unique and secure.

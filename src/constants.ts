@@ -15,6 +15,7 @@ export const Errors = {
   // Fetch
   MissingID: 'Missing ID',
   FileNotFound: 'File not found',
+  FileNotFoundNoFallback: 'File not found (no fallback available)',
   InvalidImageType: 'Invalid image type/extension',
 
   // Delete

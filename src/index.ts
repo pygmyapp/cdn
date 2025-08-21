@@ -15,6 +15,21 @@ export const minio = new MinIO.Client({
   secretKey: process.env.MINIO_SECRET_KEY as string
 });
 
+const ensureBucket = async (bucket: string): Promise<void> => {
+  if (!(await minio.bucketExists(bucket).catch(() => false))) {
+    await minio.makeBucket(bucket);
+
+    console.log(`Bucket ${bucket} created`);
+  }
+};
+
+// Ensure buckets exist
+(async () => {
+  await ensureBucket('cache');
+  await ensureBucket('attachments');
+  await ensureBucket('avatars');
+})();
+
 // Routes
 app.use('/*', cors());
 

@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import { Hono } from 'hono';
 import mime from 'mime';
 import sharp, { type FormatEnum } from 'sharp';
@@ -287,8 +288,28 @@ app.get('/:bucket/:id', async (c) => {
     if (typeof err !== 'object' || err === null || !('code' in err))
       return c.json({ error: Errors.ServerError }, 500);
 
-    if (err.code === 'NoSuchKey' || err.code === 'NotFound')
+    if (err.code === 'NoSuchKey' || err.code === 'NotFound') {
+      // If requesting an avatar, provide a fallback/default avatar
+      if (bucket === 'avatars') {
+        const fallbackPath = resolve(
+          `./public/default-avatar.${type ? type : 'webp'}`
+        );
+
+        const fallbackFile = Bun.file(fallbackPath);
+
+        if (!(await fallbackFile.exists()))
+          return c.json({ error: Errors.FileNotFoundNoFallback }, 404);
+
+        return new Response(fallbackFile, {
+          headers: {
+            'Content-Type': fallbackFile.type,
+            'Content-Length': fallbackFile.size.toString()
+          }
+        });
+      }
+
       return c.json({ error: Errors.FileNotFound }, 404);
+    }
 
     console.error(err);
 
