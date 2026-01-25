@@ -10,7 +10,7 @@ S3-compatible content server for uploading and serving images/attachments
 
 It is *highly recommended* to change the default credentials to something unique and secure.
 
-`pygmyapp/gateway` also depends on:
+`pygmyapp/cdn` also depends on:
 - an active IPC server (`pygmyapp/ipc-server`) and REST API (`pygmyapp/rest`), used for authentication
 
 ## API
