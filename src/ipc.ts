@@ -4,7 +4,7 @@ import IPC, { type IPCMessage } from 'ipc-client';
 export const ipc = new IPC('cdn');
 
 /**
- * Send a request/response over IPO
+ * Send a request/response over IPC
  * @param to Recipient name
  * @param type Request/response
  * @param action Action name

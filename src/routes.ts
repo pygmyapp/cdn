@@ -284,9 +284,10 @@ app.get('/:bucket/:id', async (c) => {
       headers: c.res.headers
     });
   } catch (err) {
-    console.error(err);
-    if (typeof err !== 'object' || err === null || !('code' in err))
+    if (typeof err !== 'object' || err === null || !('code' in err)) {
+      console.error(err);
       return c.json({ error: Errors.ServerError }, 500);
+    }
 
     if (err.code === 'NoSuchKey' || err.code === 'NotFound') {
       // If requesting an avatar, provide a fallback/default avatar
