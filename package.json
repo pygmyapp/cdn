@@ -16,7 +16,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "hono": "^4.11.5",
+    "hono": "^4.11.7",
     "ipc-client": "github:pygmyapp/ipc-client",
     "mime": "^4.1.0",
     "minio": "^8.0.6",

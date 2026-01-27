@@ -35,6 +35,9 @@ app.use('/*', cors());
 
 app.route('/', routes);
 
+// Health check
+app.get('/health', (c) => c.json({ ok: true }));
+
 // Connect to IPC
 ipc.connect();
 
