@@ -3,6 +3,13 @@ import IPC, { type IPCMessage } from 'ipc-client';
 
 export const ipc = new IPC('cdn');
 
+type IPCMessagePayload = {
+  type: string;
+  event: string;
+  client: string;
+  [key: string]: unknown;
+};
+
 /**
  * Send a request/response over IPC
  * @param to Recipient name
@@ -30,10 +37,6 @@ ipc.on('connect', () => console.log('Connected to IPC server/socket'));
 ipc.on('disconnect', () => console.log('Lost connection to IPC server/socket'));
 
 ipc.on('message', async (message: IPCMessage) => {
-  if (!message.type || !message.action) return;
-
-  const _type = message.payload.type as string;
-  const _action = message.payload.action as string;
-
-  // TODO: this
+  // todo: this
+  const payload = message.payload as IPCMessagePayload;
 });
