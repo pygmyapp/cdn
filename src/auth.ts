@@ -2,7 +2,7 @@ import { createMiddleware } from 'hono/factory';
 // @ts-ignore ipc-client is lacking typing... fix this
 import type { IPCMessage } from 'ipc-client';
 import { Errors } from './constants';
-import { ipc, send } from './ipc';
+import { ipc, type IPCMessageActionPayload } from './ipc';
 
 // Authorized middleware
 export const authMiddleware = createMiddleware<{
@@ -30,25 +30,27 @@ export const authMiddleware = createMiddleware<{
       userId: string | null;
     }>((resolve, _reject) => {
       ipc.on('message', (message: IPCMessage) => {
+        const payload = message.payload as IPCMessageActionPayload;
+
         if (
           message.from === 'rest' &&
-          'type' in message.payload &&
-          (message.payload.type as string) === 'response' &&
-          'action' in message.payload &&
-          (message.payload.action as string) === 'VERIFY_TOKEN' &&
-          'token' in message.payload &&
-          (message.payload.token as string) === token &&
-          'valid' in message.payload &&
-          'userId' in message.payload
+          payload.type === 'response' &&
+          payload.action === 'VERIFY_TOKEN' &&
+          'token' in payload &&
+          (payload.token as string) === token &&
+          'valid' in payload &&
+          'userId' in payload
         ) {
           return resolve({
-            valid: message.payload.valid as boolean,
-            userId: message.payload.userId as string | null
+            valid: payload.valid as boolean,
+            userId: payload.userId as string | null
           });
         }
       });
 
-      send('rest', 'request', 'VERIFY_TOKEN', {
+      ipc.send('rest', {
+        type: 'request',
+        action: 'VERIFY_TOKEN',
         token
       });
     });

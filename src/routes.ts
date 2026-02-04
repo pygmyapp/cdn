@@ -49,7 +49,7 @@ const parseSize = (
  * Invalidates all cached versions of a given image ID
  * @param id Image ID
  */
-const invalidateCacheFor = async (id: string): Promise<void> => {
+export const invalidateCacheFor = async (id: string): Promise<void> => {
   const objects: string[] = [];
 
   const stream = minio.listObjectsV2('cache', `${id}__`, true);
